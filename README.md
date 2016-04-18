@@ -4,6 +4,17 @@ This repository contains the code for the AppDirect integration project, part of
 ## Running the App
 Java 8 is required to run the application.  The application will attempt to bind to port 8080.
 
+The following APIs are implemented:
+* Subscription Create
+* Subscription Change
+* Subscription Cancel
+* Subscription Notice
+* User Assignment
+* User Unassignment
+* User Updated
+
+All the above APIs can be reached at `/api/v1/integration?event={eventUrl}`
+
 ### Method 1
 
 If you require additional JVM args, use the second method.
