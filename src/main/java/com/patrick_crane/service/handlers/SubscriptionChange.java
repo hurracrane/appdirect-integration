@@ -40,7 +40,8 @@ public class SubscriptionChange implements AppDirectEventHandler {
   }
 
   private Rule<Event> buildValidationRules() {
-    return new SubscriptionExists(subscriptionRepository);
+    Rule<Event> ruleChain = new SubscriptionExists(subscriptionRepository);
+    return ruleChain;
   }
 
 }

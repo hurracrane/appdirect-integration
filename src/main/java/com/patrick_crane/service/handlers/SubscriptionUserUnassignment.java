@@ -45,8 +45,9 @@ public class SubscriptionUserUnassignment implements AppDirectEventHandler {
   }
 
   private Rule<Event> buildValidationRules() {
-    return new SubscriptionExists(subscriptionRepository)
+    Rule<Event> ruleChain = new SubscriptionExists(subscriptionRepository)
           .andThenWith(new SubscriptionUserExists(subscriptionUserRepository));
+    return ruleChain;
   }
 
 }

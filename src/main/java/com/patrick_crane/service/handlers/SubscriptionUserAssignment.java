@@ -48,9 +48,10 @@ public class SubscriptionUserAssignment implements AppDirectEventHandler {
   }
 
   private Rule<Event> buildValidationRules() {
-    return new SubscriptionExists(subscriptionRepository)
+    Rule<Event> ruleChain = new SubscriptionExists(subscriptionRepository)
           .andThenWith(new BelowUserLimit(subscriptionRepository))
           .andThenWith(new SubscriptionUserDoesNotExist(subscriptionUserRepository));
+    return ruleChain;
   }
 
 }

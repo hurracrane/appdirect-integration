@@ -50,8 +50,9 @@ public class SubscriptionNotice implements AppDirectEventHandler {
   }
 
   private Rule<Event> buildValidationRules() {
-    return new SubscriptionExists(subscriptionRepository)
+    Rule<Event> ruleChain = new SubscriptionExists(subscriptionRepository)
           .andThenWith(new CanTransitionToState(subscriptionRepository));
+    return ruleChain;
   }
 
 }

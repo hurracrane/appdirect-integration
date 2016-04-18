@@ -53,7 +53,8 @@ public class SubscriptionCreate implements AppDirectEventHandler {
   }
 
   private Rule<Event> buildValidationRules() {
-    return new SubscriptionDoesNotExist(subscriptionRepository);
+    Rule<Event> ruleChain = new SubscriptionDoesNotExist(subscriptionRepository);
+    return ruleChain;
   }
 
 }
