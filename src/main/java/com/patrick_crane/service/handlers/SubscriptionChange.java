@@ -25,19 +25,19 @@ public class SubscriptionChange implements AppDirectEventHandler {
   @Autowired
   private SubscriptionRepository subscriptionRepository;
 
-	@Override
-	@Transactional
-	public NotificationResponse handle(Event event) {
+  @Override
+  @Transactional
+  public NotificationResponse handle(Event event) {
     buildValidationRules().executeChain(event);
 
     String companyUuid = event.getPayload().getAccount().getAccountIdentifier();
     Subscription subscription = subscriptionRepository.findOne(companyUuid);
-	  SubscriptionPopulator.populateSubscriptionOrder(subscription, event);
+    SubscriptionPopulator.populateSubscriptionOrder(subscription, event);
     LOGGER.info("Changing subscription for company with UUID " + companyUuid);
     subscriptionRepository.save(subscription);
 
-	  return new SuccessNotificationResponse();
-	}
+    return new SuccessNotificationResponse();
+  }
 
   private Rule<Event> buildValidationRules() {
     return new SubscriptionExists(subscriptionRepository);

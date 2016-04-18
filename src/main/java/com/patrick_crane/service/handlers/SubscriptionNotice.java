@@ -28,9 +28,9 @@ public class SubscriptionNotice implements AppDirectEventHandler {
   @Autowired
   private SubscriptionRepository subscriptionRepository;
 
-	@Override
-	@Transactional
-	public NotificationResponse handle(Event event) {
+  @Override
+  @Transactional
+  public NotificationResponse handle(Event event) {
     buildValidationRules().executeChain(event);
 
     Notice notice = event.getPayload().getNotice();
@@ -47,7 +47,7 @@ public class SubscriptionNotice implements AppDirectEventHandler {
     }
 
     return new SuccessNotificationResponse();
-	}
+  }
 
   private Rule<Event> buildValidationRules() {
     return new SubscriptionExists(subscriptionRepository)

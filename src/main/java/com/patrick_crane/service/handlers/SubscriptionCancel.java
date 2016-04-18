@@ -33,7 +33,7 @@ public class SubscriptionCancel implements AppDirectEventHandler {
     subscriptionRepository.delete(companyUuid);
 
     return new SuccessNotificationResponse();
-	}
+  }
 
   private Rule<Event> buildValidationRules() {
     return new SubscriptionExists(subscriptionRepository);
