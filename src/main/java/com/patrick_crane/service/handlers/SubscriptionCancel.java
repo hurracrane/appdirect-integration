@@ -23,9 +23,9 @@ public class SubscriptionCancel implements AppDirectEventHandler {
   @Autowired
   private SubscriptionRepository subscriptionRepository;
 
-	@Override
-	@Transactional
-	public NotificationResponse handle(Event event) {
+  @Override
+  @Transactional
+  public NotificationResponse handle(Event event) {
     buildValidationRules().executeChain(event);
 
     String companyUuid = event.getPayload().getAccount().getAccountIdentifier();
